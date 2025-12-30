@@ -1,5 +1,6 @@
 package crm.opencart.base;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -12,6 +13,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
+import com.opencart.utils.ReadFromProperties;
+
 import org.apache.logging.log4j.LogManager;//log4j
 import org.apache.logging.log4j.Logger;   //log4j
 
@@ -23,7 +26,7 @@ public Logger logger;
 	
 	@BeforeClass
 	@Parameters({"os","browser"})
-	public void setup(String os , String browser)
+	public void setup(String os , String browser) throws IOException
 	{
 		//log4j
 		logger = LogManager.getLogger(this.getClass()); 
@@ -40,7 +43,7 @@ public Logger logger;
 		
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		driver.get("https://demo.opencart.com/");
+		driver.get(ReadFromProperties.getData("url"));
 		driver.manage().window().maximize();
 		
 	}

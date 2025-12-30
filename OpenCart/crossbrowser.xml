@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="OpenCartSuite" parallel="tests">
+<suite name="Suite" thread-count="5" parallel="tests">
 
 
-	<test thread-count="5" name="EdgeTest">
+	<test name="EdgeTest">
 		<parameter name="os" value="windows" />
 		<parameter name="browser" value="edge" />
 
@@ -11,7 +11,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="5" name="ChromeTest">
+	<test name="ChromeTest">
 		<parameter name="os" value="windows" />
 		<parameter name="browser" value="chrome" />
 
@@ -20,7 +20,7 @@
 		</classes>
 	</test>
 
-	<test thread-count="5" name="FireFoxTest">
+	<test name="FireFoxTest">
 		<parameter name="os" value="windows" />
 		<parameter name="browser" value="firefox" />
 
