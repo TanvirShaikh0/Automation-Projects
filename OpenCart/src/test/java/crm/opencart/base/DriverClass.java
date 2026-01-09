@@ -1,10 +1,16 @@
 package crm.opencart.base;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,18 +19,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
-import com.opencart.utils.ReadFromProperties;
+import crm.opencart.utils.ReadFromProperties;
 
 import org.apache.logging.log4j.LogManager;//log4j
 import org.apache.logging.log4j.Logger;   //log4j
 
 public class DriverClass {
 	
-public WebDriver driver;
+public static WebDriver driver;  //driver is static because it is used everywhere and it is created only once so there is no conflict
 public Logger logger;
 
 	
-	@BeforeClass
+	@BeforeClass(groups= {"Sanity","Regression","Master"})
 	@Parameters({"os","browser"})
 	public void setup(String os , String browser) throws IOException
 	{
@@ -48,7 +54,7 @@ public Logger logger;
 		
 	}
 	
-	@AfterClass
+	@AfterClass(groups= {"Sanity","Regression","Master"})
 	public void tearDown()
 	{
 		driver.quit();
@@ -77,6 +83,22 @@ public Logger logger;
 		return (generatedString+"@"+generateNumber);
 
 		
+	}
+	
+	public String captureScreen(String tname) throws IOException {
+
+		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+				
+		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+		File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+		
+		String targetFilePath=System.getProperty("user.dir")+"\\screenshots\\" + tname + "_" + timeStamp + ".png";
+		File targetFile=new File(targetFilePath);
+		
+		FileUtils.copyFile(sourceFile, targetFile);
+			
+		return targetFilePath;
+
 	}
 
 }

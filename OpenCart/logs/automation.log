@@ -1,0 +1,3 @@
+2026-01-09 11:56:46 INFO  TC_LF_001:23 - === Started TC_LF_001 ===
+2026-01-09 11:56:46 INFO  TC_LF_001:27 - *** Clicking on My Account link ***
+2026-01-09 11:56:46 ERROR TC_LF_001:41 - Cannot invoke "com.opencart.pages.HomePage.clickMyAccount()" because "this.hp" is null

@@ -13,9 +13,10 @@ public class TC_RF_001 extends DriverClass{
 	
 	HomePage hp;
 	RegisterPage rp;
+	String confirmMsg;
 	
 	
-	@Test
+	@Test(groups= {"Master","Regression"})
 	public void accountRegisteration()
 	{
 		logger.info("**** STARTED TC_RF_001  ****");
@@ -40,7 +41,7 @@ public class TC_RF_001 extends DriverClass{
 			rp.clickContinue();
 			
 			logger.info("Validating Account");
-			String confirmMsg = rp.getMessage();
+			confirmMsg = rp.getMessage();
 			if(confirmMsg.equals("Your Account Has Been Created!"))
 			{
 				Assert.assertTrue(true);

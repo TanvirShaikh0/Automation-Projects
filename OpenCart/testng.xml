@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite">
 
+	<listeners>
+		<listener class-name="crm.opencart.listeners.ExtentReportManager" />
+	</listeners>
+
 	<test thread-count="5" name="Test">
 		<parameter name="os" value="windows" />
 		<parameter name="browser" value="edge" />
-		
+
 		<classes>
 			<class name="crm.opencart.test.TC_RF_001" />
+			<class name="crm.opencart.test.TC_LF_001" />
+
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

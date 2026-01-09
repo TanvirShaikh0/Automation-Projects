@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="crm.opencart.listeners.ExtentReportManager"/>
+  </listeners>
   <test thread-count="5" name="Test(failed)">
     <parameter name="os" value="windows"/>
     <parameter name="browser" value="edge"/>
@@ -12,6 +15,13 @@
           <include name="tearDown"/>
         </methods>
       </class> <!-- crm.opencart.test.TC_RF_001 -->
+      <class name="crm.opencart.test.TC_LF_001">
+        <methods>
+          <include name="accountLogin"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- crm.opencart.test.TC_LF_001 -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
